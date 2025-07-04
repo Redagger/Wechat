@@ -408,31 +408,18 @@ header {
   color: #555;
 }
 
-/* ✅ Responsive: Vertical stack on smaller screens */
+/*  Responsive: Vertical stack on smaller screens */
 @media (max-width: 768px) {
-  .nft-grid {
+  .upcoming-nfts .nft-grid {
     flex-direction: column;
-    overflow-x: hidden;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 80vh;
-    padding-right: 10px;
-    scroll-snap-type: y mandatory;
+    align-items: center;
   }
 
-  .nft-card {
+  .upcoming-nfts .nft-card {
     width: 100%;
-    margin-bottom: 16px;
-    scroll-snap-align: start;
+    max-width: 340px;
+    margin: 0 auto 20px;
   }
-
-  .nft-grid::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-.nft-grid::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
-
-}
-
