@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WeRank - NFT Showcase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 👤 Discord Username Display -->
+    <div class="discord-user-display" id="discordUserDisplay"></div>
+
+    <!--  Site Branding -->
+    <div class="site-branding">
+      <img src="img/logo2.png" alt="Logo" class="site-logo" />
+      <span class="site-name">WeRank</span>
+    </div>
+
+    <!-- 🔮 Upcoming NFTs -->
+    <section class="upcoming-nfts">
+      <h2>Upcoming Evaluation</h2>
+      <div class="nft-grid">
+        <div class="nft-card">
+          <img src="img/chewy.jpg" alt="Upcoming NFT 1" />
+          <h3>Project Chewy</h3>
+          <p>Chewy launched in early March 2025, with minting and perk announcements by late March; as of June 30, it is in its early developmental phase.</p>
+        </div>
+        <div class="nft-card">
+          <img src="img/chog.jpg" alt="Upcoming NFT 2" />
+          <h3>Project Chog</h3>
+          <p>Chog launched publicly in early March 2025, with the Mystery Chest mint on March 13; it has been active for about 3.5 months as of June 30.</p>
+        </div>
+        <div class="nft-card">
+          <img src="img/chogstarr.jpg" alt="Upcoming NFT 3" />
+          <h3>Project Chogstarr</h3>
+          <p>Launched on Monad testnet by March 28, 2025, with active community and marketplace presence by June 2025.</p>
+        </div>
+        <div class="nft-card">
+            <img src="img/monadverse.jpg" alt="Upcoming NFT 3" />
+            <h3>Project Monadverse</h3>
+            <p>Monadverse began in late 2024, with major activity by January 2025; as of June 30, it’s 6–8 months old, with mainnet expected in Q3 2025.</p>
+        </div>
+        <div class="nft-card">
+            <img src="img/squad.jpg" alt="Upcoming NFT 3" />
+            <h3>Project The 10k squad</h3>
+            <p>Launched on March 17, 2025, with initial activity starting March 11; as of June 30, it’s in early but active stages.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--  Active NFT -->
+    <section class="active-nft">
+      <h2>Ongoing Evaluation</h2>
+      <div class="nft-card active">
+        <a href="index.html">
+          <img src="img/molandak.jpg" alt="Active NFT" />
+          <h3>Project Molandak</h3>
+          <p>Molandak NFT is a 5,000-piece free-to-mint collection on the Monad blockchain,It features a spiky mascot character, serving as a cultural icon in the Monad ecosystem.The project fosters community engagement through testnet mints, giveaways, and whitelist rewards.</p>
+
+        </a>
+      </div>
+    </section>
+
+    <section class="feedback-center">
+      <h2>💬 Wanna become a Verified Ranker?</h2>
+      <p>
+        You gain increased voting power, exclusive benefits, and monthly rewards in recognition of your unbiased contributions and expertise.
+      </p>
+      <a href="https://forms.gle/LoemT1vfAFCEyF9G7" target="_blank">
+        <button class="feedback-btn">📋 Click me!</button>
+      </a>
+    </section>
+
+
+  </div>
+
+  <!--  Discord Username Script -->
+  <script>
+    const discordUser = localStorage.getItem("discordUser");
+    if (discordUser) {
+      document.getElementById("discordUserDisplay").innerText = `👤 ${discordUser}`;
+    }
+
+
+  
+
+
+  </script>
+</body>
+</html>

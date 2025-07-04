@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NFT Project Evaluation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="site-branding">
+      <img src="img/logo2.png" alt="Logo" class="site-logo" />
+      <span class="site-name">WeRank</span>
+    </div>
+    
+    
+    <header>
+      <h1>NFT Project Evaluation</h1>
+    </header>
+
+    <div class="nft-section">
+      <img src="img/molandak.jpg" alt="NFT Art" class="nft-art" />
+      <h2 class="nft-title">"Project Molandak"</h2>
+      <p class="nft-description">
+        Molandak NFT is a 5,000-piece free-to-mint collection on the Monad blockchain,It features a spiky mascot character, serving as a cultural icon in the Monad ecosystem.The project fosters community engagement through testnet mints, giveaways, and whitelist rewards.
+      </p>
+    </div>
+
+    <form id="evaluation-form">
+      <div class="category" data-category="duration">
+        <h3>Project Duration</h3>
+        <p class="category-description">
+          Molandak launched on February 23, 2025, making it approximately four months old as of June 30, 2025.
+        </p>
+        <div class="options">
+          <button type="button">Excellent</button>
+          <button type="button">Good</button>
+          <button type="button">Bad</button>
+          <button type="button">Very Bad</button>
+        </div>
+      </div>
+
+      <div class="category" data-category="track-record">
+        <h3>Track Record</h3>
+        <p class="category-description">
+          Though unnamed, the team operates with the original creator’s approval and Monad Pad backing, securing partnerships with Magic Eden and Monadverse.
+        </p>
+        <div class="options">
+          <button type="button">Excellent</button>
+          <button type="button">Good</button>
+          <button type="button">Bad</button>
+          <button type="button">Very Bad</button>
+        </div>
+      </div>
+
+      <div class="category" data-category="ip">
+        <h3>Project IP</h3>
+        <p class="category-description">
+          Features 5,000 unique NFTs rooted in Monadverse culture, emphasizing creativity and community-driven storytelling.
+        </p>
+        <div class="options">
+          <button type="button">Excellent</button>
+          <button type="button">Good</button>
+          <button type="button">Bad</button>
+          <button type="button">Very Bad</button>
+        </div>
+      </div>
+
+      <div class="category" data-category="transparency">
+        <h3>Project Transparency</h3>
+        <p class="category-description">
+          Achieved a sold-out free mint, 1M $MON in volume, and early roadmap milestones like WL access; mainnet mint and further perks are in progress.
+        </p>
+        <div class="options">
+          <button type="button">Excellent</button>
+          <button type="button">Good</button>
+          <button type="button">Bad</button>
+          <button type="button">Very Bad</button>
+        </div>
+      </div>
+
+      <div class="wallet-input">
+        <label for="wallet">Ethereum Wallet Address:</label>
+        <input type="text" id="wallet" name="wallet" placeholder="0x..." />
+      </div>
+
+      <button type="submit" id="submit-btn">Submit</button>
+      <button type="button" id="reset-btn">Reset Ratings</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

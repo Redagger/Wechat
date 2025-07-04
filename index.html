@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In | WeRank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to right, #eef2f3, #d1dce0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .site-header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  gap: 10px;
+}
+
+.site-logo {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.site-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+
+    .login-wrapper {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .login-wrapper h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .login-wrapper p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .discord-btn img {
+      width: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .discord-btn img:hover {
+      transform: scale(1.05);
+    }
+
+    .username-display {
+      margin-top: 25px;
+      font-size: 16px;
+      color: #007bff;
+      font-weight: bold;
+    }
+    
+
+  </style>
+</head>
+<body>
+    <div class="site-header">
+        <div class="site-branding">
+          <img src="img/logo2.png" alt="WeRank Logo" class="site-logo" />
+          <span class="site-name">WeRank</span>
+        </div>
+      </div>
+      
+  <div class="login-wrapper">
+    <h2>🔐 Sign In with Discord</h2>
+    <p>Connect your account securely to personalize your WeRank experience.</p>
+
+    <div class="discord-btn">
+        <a href="https://discord.com/oauth2/authorize?client_id=1390424839029915770&response_type=code&redirect_uri=hthttp%3A%2F%2Fwerank.netlify.app%2Fmain.html&scope=identify">
+        <img src="img/discord.jpg" alt="Sign in with Discord" />
+      </a>
+    </div>
+
+    <div id="usernameDisplay" class="username-display"></div>
+  </div>
+
+  <script>
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const token = params.get("access_token");
+
+    if (token) {
+      fetch("https://discord.com/api/users/@me", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(user => {
+        const username = `${user.username}#${user.discriminator}`;
+        document.getElementById("usernameDisplay").innerText = `✅ Logged in as ${username}`;
+        localStorage.setItem("discordUser", username);
+      })
+      .catch(() => {
+        document.getElementById("usernameDisplay").innerText = "❌ Error fetching user info.";
+      });
+    }
+  </script>
+</body>
+</html>

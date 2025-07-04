@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NFT Project Poll Results</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .result-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      margin-bottom: 25px;
+      padding: 25px 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .result-card h3 {
+      color: #3B82F6;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .bar-container {
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .bar {
+      height: 24px;
+      border-radius: 8px;
+      background: linear-gradient(to right, #3B82F6, #8B5CF6);
+      color: white;
+      text-align: left;
+      padding-left: 10px;
+      line-height: 24px;
+      overflow: hidden;
+      animation: grow 1s ease-out;
+    }
+
+    @keyframes grow {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+    .site-branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+  
+  .site-logo {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .site-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+    @media (max-width: 600px) {
+      .result-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-branding">
+    <img src="img/logo2.png" alt="Logo" class="site-logo" />
+    <span class="site-name">WeRank</span>
+  </div>
+  <h2>🔍 NFT Project Evaluation Poll</h2>
+  <div id="results"></div>
+  
+
+
+  <script>
+  const votes = JSON.parse(localStorage.getItem('votes')) || [];
+  const categories = ['duration', 'track-record', 'ip', 'transparency'];
+  const levels = ['Excellent', 'Good', 'Bad', 'Very Bad'];
+  const summary = {};
+
+  categories.forEach(category => {
+    summary[category] = { Excellent: 0, Good: 0, Bad: 0, 'Very Bad': 0 };
+  });
+
+  votes.forEach(vote => {
+    categories.forEach(cat => {
+      const choice = vote[cat];
+      if (choice) summary[cat][choice]++;
+    });
+  });
+
+  const resultsDiv = document.getElementById('results');
+
+  categories.forEach(category => {
+    const total = Object.values(summary[category]).reduce((a, b) => a + b, 0);
+    const section = document.createElement('div');
+    section.className = 'result-card';
+    section.innerHTML = `<h3>${category.replace(/-/g, ' ')}</h3>`;
+
+    levels.forEach(level => {
+      const count = summary[category][level];
+      const percent = total ? Math.round((count / total) * 100) : 0;
+
+      section.innerHTML += `
+        <div class="bar-container">
+          <div class="label">${level} - ${percent}%</div>
+          <div class="bar" style="width: ${percent}%">${count} vote${count !== 1 ? 's' : ''}</div>
+        </div>
+      `;
+    });
+
+    resultsDiv.appendChild(section);
+  });
+
+  //  Calculate overall average
+  let grandTotal = 0;
+  let totalPossible = 0;
+
+  categories.forEach(category => {
+    levels.forEach(level => {
+      const count = summary[category][level];
+      let score = 0;
+      switch(level) {
+        case 'Excellent': score = 4; break;
+        case 'Good': score = 3; break;
+        case 'Bad': score = 2; break;
+        case 'Very Bad': score = 1; break;
+      }
+      grandTotal += count * score;
+      totalPossible += count * 4;
+    });
+  });
+
+  const overallPercent = totalPossible ? Math.round((grandTotal / totalPossible) * 100) : 0;
+
+  //  Determine tier label
+  let tier = '';
+  if (overallPercent >= 70) tier = '💎 Diamond Tier';
+  else if (overallPercent >= 60) tier = '🥇 Gold Tier';
+  else if (overallPercent >= 50) tier = '🥈 Silver Tier';
+  else if (overallPercent >= 40) tier = '🥉 Bronze Tier';
+  else tier = '❌ Below Bronze Tier';
+
+  //  Append final score and tier
+  const avgDiv = document.createElement('div');
+  avgDiv.className = 'result-card';
+  avgDiv.innerHTML = `
+    <h3>✨ Overall NFT Project Score</h3>
+    <div class="bar-container">
+      <div class="label">Total Average: ${overallPercent}% (${tier})</div>
+      <div class="bar" style="width: ${overallPercent}%">${overallPercent}%</div>
+    </div>
+  `;
+
+  resultsDiv.appendChild(avgDiv);
+
+
+  </script>
+</body>
+</html>
