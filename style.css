@@ -424,5 +424,15 @@ header {
     margin-bottom: 16px;
     scroll-snap-align: start;
   }
+
+  .nft-grid::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.nft-grid::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+
 }
 
