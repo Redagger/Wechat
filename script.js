@@ -50,7 +50,7 @@ document.getElementById('evaluation-form').addEventListener('submit', function (
   if (!allSelected || !validWallet) {
     let message = "";
     if (!allSelected) message += "⚠️ Please rate all four categories.\n";
-    if (!validWallet) message += "⚠️ Enter a valid Ethereum wallet address (e.g., 0x...).";
+    if (!validWallet) message += "⚠️ Enter a valid Monad wallet address (e.g., 0x...).";
     alert(message);
     return;
   }
