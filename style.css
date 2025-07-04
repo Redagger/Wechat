@@ -417,6 +417,23 @@ header {
     overflow-x: hidden;
     max-height: 80vh;
     align-items: center;
+
+    /* 🎯 Make scrollbar visible */
+    scrollbar-width: thin; /* for Firefox */
+    scrollbar-color: #ccc transparent; /* Firefox fallback */
+  }
+
+  .upcoming-nfts .nft-grid::-webkit-scrollbar {
+    width: 6px; /* thickness */
+  }
+
+  .upcoming-nfts .nft-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* scrollbar color */
+    border-radius: 10px;
+  }
+
+  .upcoming-nfts .nft-grid::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   .upcoming-nfts .nft-card {
@@ -424,3 +441,4 @@ header {
     max-width: 340px;
     margin: 0 auto 20px;
   }
+}
